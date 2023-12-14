@@ -17,16 +17,25 @@ class BookshelfSeeder extends Seeder
             [
                 [
                     'code' => 'BKSSH001',
-                    'name' => 'Malioboro at night'
+                    'name' => 'Action',
+                    'created_at' => now(),
+                    'updated_at' => now()
+                    
+                    
+
                 ],
                 [
                     'code' => 'BKSSH002',
-                    'name' => 'Samantha'
+                    'name' => 'comedy',
+                    'created_at' => now(),
+                    'updated_at' => now()
                     
                 ],
                 [
                     'code' => 'BKSSH03',
-                    'name' => 'Dilan 1990'
+                    'name' => 'Horror',
+                    'created_at' => now(),
+                    'updated_at' => now()
                 ],
             ]
             );
