@@ -34,6 +34,8 @@ class RegisteredUserController extends Controller
     {
        // ModelsRole::create(['name' => 'Anggota', 'guard_name' => 'web']);
 
+       $role= Role::create(['name' => 'anggota']);
+
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],

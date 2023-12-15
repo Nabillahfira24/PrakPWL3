@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Bookshelf extends Model
 {
-    public $table = 'bookshelf';
+    public $table = 'bookshelfs';
     use HasFactory;
 
 }
