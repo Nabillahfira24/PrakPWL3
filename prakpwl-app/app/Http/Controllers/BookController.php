@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Bookshelf;
 use Illuminate\Support\Facades\Storage;
-
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class BookController extends Controller
 {
@@ -15,6 +15,7 @@ class BookController extends Controller
         $data['books'] = Book::with('bookshelf')->get();
         return view('books.index', $data);
     }
+
     public function create()
     {
         $data['bookshelves'] = Bookshelf::pluck('name', 'id');
@@ -100,6 +101,7 @@ class BookController extends Controller
 
         return redirect()->route('book')->with($notificaton);
     }
+
     public function destroy(string $id)
     {
         $book = Book::findOrFail($id);
@@ -114,5 +116,13 @@ class BookController extends Controller
         );
 
         return redirect()->route('book')->with($notificaton);
+    }
+
+    public function print()
+    {
+        $books = Book::all();
+
+        $pdf = Pdf::loadview('books.print', ['books' => $books]);
+        return $pdf->download('data_buku.pdf');
     }
 }
