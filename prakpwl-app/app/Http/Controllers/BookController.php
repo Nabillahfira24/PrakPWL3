@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Bookshelf;
+use Illuminate\Support\Facades\Storage;
 
 
 class BookController extends Controller
@@ -95,6 +96,21 @@ class BookController extends Controller
         $notificaton = array(
             'message' => 'Data buku berhasil diperbahharui',
             'alert-type' => 'success'
+        );
+
+        return redirect()->route('book')->with($notificaton);
+    }
+    public function destroy(string $id)
+    {
+        $book = Book::findOrFail($id);
+
+        Storage::delete('public/cover_buku/' . $book->cover);
+
+        $book->delete();
+
+        $notificaton = array(
+            'message' => 'Buku telah berhasil dihapus',
+            'alert-type' => 'warning'
         );
 
         return redirect()->route('book')->with($notificaton);
